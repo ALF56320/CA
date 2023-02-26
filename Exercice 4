@@ -1,0 +1,30 @@
+#!/bin/bash
+NAMES=( John Eric Jessica )
+# write your code here
+NUMBERS(0)=1
+NUMBERS(1)=2
+NUMBERS(2)=3
+STRINGS(0)=hello
+STRINGS(1)=world
+NumberOfNames=${#NAMES[@]}
+second_name=NAMES[1]
+
+ 
+Vous devez ajouter les nombres 1, 2 et 3 au tableau "numbers", 
+et les mots "hello" et "world" au tableau strings.
+
+NumberOfNames doit contenir le nombre total de noms dans le tableau NAMES, en utilisant la variable spéciale $#.
+La variable second_name doit contenir le second nom dans le tableau NAMES, en utilisant l'opérateur crochets [ ].
+Notez que l'index est basé sur zéro, donc si vous voulez accéder au deuxième élément de la liste, son index sera 1.
+
+#!/bin/bash
+NAMES=( John Eric Jessica )
+# write your code here
+NUMBERS=( 1 2 3 ) # je pouvais tout entrer tout en même temps dans ma variable juste en faisant un espace entre chaque
+STRINGS=( "hello" "world" ) # IDEM
+NumberOfNames=${#NAMES[@]} Par contre j'ai bien eu ce que je voulais que cete variable contienne tout du tableau names en utilisant ${#NAMES[@]} 
+second_name=${NAMES[1]}  J'aurai du reprendre la même écriture que au dessus pour obtenir le second nom 
+echo ${NUMBERS[@]}
+echo ${STRINGS[@]}
+echo "The number of names listed in the NAMES array: $NumberOfNames"
+echo "The second name on the NAMES list is:" ${second_name}
