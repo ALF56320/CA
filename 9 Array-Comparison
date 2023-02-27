@@ -1,0 +1,59 @@
+Comparaison de tableaux
+Comparaison des tableaux Le shell peut gérer les tableaux Un tableau est une variable contenant plusieurs valeurs. 
+Toute variable peut être utilisée comme tableau. 
+Il n'y a pas de limite maximale à la taille d'un tableau, ni aucune exigence que les variables membres soient indexées ou affectées de manière contiguë. 
+Les tableaux sont de base zéro : le premier élément est indexé avec le nombre 0.
+
+# basic construct
+# array=(value1 value2 ... valueN)
+array=(23 45 34 1 2 3)
+#To refer to a particular value (e.g. : to refer 3rd value)
+echo ${array[2]}
+
+#To refer to all the array values
+echo ${array[@]}
+
+#To evaluate the number of elements in an array
+echo ${#array[@]}
+Exercer
+Dans cet exercice, vous devrez comparer trois listes de tableaux et écrire les éléments communs aux trois tableaux :
+
+a=(3 5 8 10 6), , résultat est l'élément commun 5.b=(6 5 4 12)c=(14 7 5 7)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+a=(3 5 8 10 6)
+b=(6 5 4 12)
+c=(14 7 5 7)
+
+array=$
+
+
+-----------------------------------------------------------------
+	#!/bin/bash
+	# enter your array comparison code here
+	# initialize arrays a b c
+	a=(3 5 8 10 6) 
+	b=(6 5 4 12) 
+	c=(14 7 5 7)
+	#comparison of first two arrays a and b
+	for x in "${a[@]}"; do 
+	  in=false 
+	  for y in "${b[@]}"; do 
+	    if [ $x = $y ];then 
+	      # assigning the matching results to new array z
+	      z[${#z[@]}]=$x
+	    fi
+	  done 
+	done
+	#comparison of third array c with new array z
+	for i in "${c[@]}"; do 
+	  in=false
+	  for k in "${z[@]}"; do
+	    if [ $i = $k ];then
+	      # assigning the matching results to new array j
+	      j[${#j[@]}]=$i
+	    fi
+	  done 
+	done 
+	# print content of array j
+	echo ${j[@]}
