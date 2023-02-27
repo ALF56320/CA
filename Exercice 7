@@ -1,0 +1,107 @@
+La prise de décision
+Comme dans les langages de programmation populaires, le shell prend également en charge la prise de décision logique.
+else= autre
+La construction de base de la prise de décision conditionnelle est la suivante :
+
+si [ expression ] ; alors
+
+code si 'expression' est vrai
+
+Fi
+
+NAME="John"
+if [ "$NAME" = "John" ]; then
+  echo "True - my name is indeed John"
+fi
+Il peut être étendu avec 'else'
+
+NAME="Bill"
+if [ "$NAME" = "John" ]; then
+  echo "True - my name is indeed John"
+else
+  echo "False"
+  echo "You must mistaken me for $NAME"
+fi
+Il peut être étendu avec 'elif' (else-if)
+
+NAME="George"
+if [ "$NAME" = "John" ]; then
+  echo "John Lennon"
+elif [ "$NAME" = "George" ]; then
+  echo "George Harrison"
+else
+  echo "This leaves us with Paul and Ringo"
+fi
+L'expression utilisée par la construction conditionnelle est évaluée à true ou false.
+L'expression peut être une chaîne unique ou une variable. 
+Une chaîne vide ou une chaîne composée d'espaces ou d'un nom de variable indéfini est évaluée comme fausse.
+L'expression peut être une combinaison logique de comparaisons : 
+la négation est notée !
+le ET logique (conjonction) est noté &&,
+et le OU logique (disjonction) est noté ||.
+Les expressions conditionnelles doivent être entourées de doubles crochets [[ ]].
+
+Types de comparaisons numériques
+comparison    Evaluated to true when
+$a -lt $b    $a < $b
+$a -gt $b    $a > $b
+$a -le $b    $a <= $b
+$a -ge $b    $a >= $b
+$a -eq $b    $a is equal to $b
+$a -ne $b    $a is not equal to $b
+Types de comparaisons de chaînes
+comparison    Evaluated to true when
+"$a" = "$b"     $a is the same as $b
+"$a" == "$b"    $a is the same as $b
+"$a" != "$b"    $a is different from $b
+-z "$a"         $a is empty
+note1 : un espace autour de = est requis
+
+note2: utilisez "" autour des variables de chaîne pour éviter l'expansion du shell des caractères spéciaux comme *
+
+Combinaisons logiques
+if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] ; then
+    command...
+fi
+structure de cas
+case "$variable" in
+    "$condition1" )
+        command...
+    ;;
+    "$condition2" )
+        command...
+    ;;
+esac
+structure bash de cas simple
+mycase=1
+case $mycase in
+    1) echo "You selected bash";;
+    2) echo "You selected perl";;
+    3) echo "You selected phyton";;
+    4) echo "You selected c++";;
+    5) exit
+esac
+Exercer
+Modifiez les variables dans la première section, de sorte que chaque instruction if soit résolue comme True.
+
+#!/bin/bash
+# change these variables
+NUMBER=10
+APPLES=12
+KING=GEORGE
+# modify above variables
+# to make all decisions below TRUE
+if [ $NUMBER -lt 15 ] ; then
+  echo 1
+fi
+if [ $NUMBER -lt $APPLES ] ; then
+  echo 2
+fi
+if [[ ($APPLES -eq 12) || ("$KING" = "LUIS") ]] ; then
+  echo 3
+fi
+if [[ $(($NUMBER + $APPLES)) -ne 32 ]] ; then
+  echo 4
+fi
+
+J'ai réussi l'exertcice sans solution(Oui j'ai un ego)
