@@ -1,0 +1,52 @@
+#!/bin/bash
+
+BUFFETT="Life is like a snowball. The important thing is finding wet snow and a really long hill."
+# write your code here
+ISAY="Life is like a snowball. The important thing is finding wet snow and a really long hill."
+
+echo ${ISAY[@]/snow/foot}
+echo ${ISAY[@]//snow/}
+echo ${ISAY[@]/finding/getting}
+echo ${ISAY[@]
+
+J'aurais du prendre BUFFET en variable et non pas ISAY mais j'avais compris qu'il fallait que je mette la phrase en ="... "
+J'ai voulu directement mettre les change* en démonstration avec echo avant qu'elle devienne des variables 
+C'est impressionnant comment on peut avoir pas bon , mais la logique derrière est imparable
+
+Dans cet exercice, vous devrez changer le dicton connu de Warren Buffett.
+Créez d'abord une variable ISAY et affectez-lui la valeur de dicton d'origine.
+BUFFET="Life is like a snowball. The important thing is finding wet snow and a really long hill."
+Ensuite, réaffectez-la avec une nouvelle valeur modifiée en utilisant les opérations de chaîne et en suivant les 4 modifications définies 
+ISAY=$BUFFET
+: Change1 : remplacez la première occurrence de 'snow' par 'foot'.
+change1=${ISAY[@]snow/foot}
+Change2 : supprimer la deuxième occurrence de 'neige'. 
+change2=${change1[@]//snow}
+Changement3 : remplacez « trouver » par « obtenir ».
+change3=${change2[@]finding/getting}
+Change4 : supprimez tous les caractères après 'wet'.
+loc='expr index "change3" 'w''
+Astuce : Une façon d'implémenter Change4, si pour trouver l'index de 'w' dans le mot 'wet' et ensuite utiliser l'extraction de sous-chaîne.
+ISAY=${change3::$loc+2}
+
+
+
+
+#!/bin/bash
+
+BUFFETT="Life is like a snowball. The important thing is finding wet snow and a really long hill."
+
+    # write your code here
+    ISAY=$BUFFETT
+    change1=${ISAY[@]/snow/foot}
+    change2=${change1[@]//snow/}
+    change3=${change2[@]/finding/getting}
+    loc=`expr index "$change3" 'w'`
+    ISAY=${change3::$loc+2}
+
+# Test code - do not modify
+echo "Warren Buffett said:"
+echo $BUFFETT
+echo "and I say:"
+echo "$ISAY"
+
