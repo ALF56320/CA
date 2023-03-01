@@ -1,0 +1,73 @@
+Il arrive souvent que vous souhaitiez attraper un signal/une interruption/une entrée utilisateur spéciale dans votre script pour éviter les imprévisibles.
+
+Trap est votre commande à essayer :
+
+trap <arg/function> <signal>
+Exemple
+#!/bin/bash
+# traptest.sh
+# notice you cannot make Ctrl-C work in this shell, 
+# try with your local one, also remeber to chmod +x 
+# your local .sh file so you can execute it!
+
+trap "echo Booh!" SIGINT SIGTERM
+echo "it's going to run until you hit Ctrl+Z"
+echo "hit Ctrl+C to be blown away!"
+
+while true        
+do
+    sleep 60       
+done
+Vous pouvez sûrement remplacer le "echo Booh!"par une fonction:
+
+function booh {
+    echo "booh!"
+}
+et appelez-le dans le piège :
+
+trap booh SIGINT SIGTERM
+Certains des types de signaux courants que vous pouvez piéger :
+
+SIGINT: l'utilisateur envoie un signal d'interruption (Ctrl + C)
+
+SIGQUIT: l'utilisateur envoie un signal de sortie (Ctrl + D)
+
+SIGFPE: tentative d'opération mathématique illégale
+
+Vous pouvez vérifier tous les types de signaux en saisissant la commande suivante :
+
+kill -l
+Notez les nombres avant chaque nom de signal, vous pouvez utiliser ce nombre pour éviter de taper de longues chaînes dans trap :
+
+#2 corresponds to SIGINT and 15 corresponds to SIGTERM
+trap booh 2 15
+l'une des utilisations courantes de trap consiste à nettoyer les fichiers temporaires :
+
+trap "rm -f folder; exit" 2
+
+---------------------------------------------------------------------------------------------------
+Cette ligne de code est une commande pour mettre en place une gestion de signal dans un programme informatique.
+
+En particulier, cette commande permet de définir une fonction ou un traitement spécifique à exécuter lorsque le processus reçoit un signal particulier.
+Les signaux sont des notifications envoyées au processus par le système d'exploitation ou par d'autres processus pour indiquer des événements tels que des erreurs, 
+des interruptions, des terminaisons de processus, etc.
+
+Avec la commande "trap", vous pouvez spécifier le signal à gérer et la fonction ou le traitement à exécuter lorsque le signal est reçu. 
+Par exemple, la commande "trap 'echo interrupt received' INT" indique que le traitement à exécuter
+lorsque le signal "INT" est reçu est d'afficher le message "interrupt received".
+
+Cela peut être utile pour gérer les interruptions de manière appropriée dans un programme, par exemple pour nettoyer les ressources avant de terminer le processus.
+
+Ces lignes de code sont un exemple de script shell Unix qui utilise la commande "trap" pour gérer les signaux SIGINT et SIGTERM, et qui exécute ensuite une boucle infinie pendant que le message "it's going to run until you hit Ctrl+Z" est affiché.
+
+Plus précisément, les lignes de code font ce qui suit:
+
+La première ligne utilise la commande "trap" pour définir une fonction de traitement pour les signaux SIGINT (généré par l'utilisateur avec Ctrl+C) et SIGTERM (signal de terminaison envoyé par le système). 
+La fonction de traitement est simplement l'affichage du message "Booh!".
+
+Les deux lignes suivantes affichent des messages pour informer l'utilisateur de ce qui va se passer.
+
+Ensuite, le script entre dans une boucle "while true", qui se poursuit indéfiniment.
+La commande "sleep 60" suspend l'exécution du script pendant 60 secondes à chaque itération de la boucle.
+
+En somme, ce script est conçu pour exécuter une boucle infinie tout en étant capable de gérer les signaux SIGINT et SIGTERM en affichant un message lorsque ces signaux sont reçus. L'utilisateur peut donc interrompre la boucle en appuyant sur Ctrl+C ou terminer le script en utilisant le signal SIGTERM.
