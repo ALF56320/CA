@@ -1,0 +1,37 @@
+Souvent, vous souhaiterez effectuer des tests de fichiers sur le système de fichiers que vous utilisez. Dans ce cas, shell vous fournira plusieurs commandes utiles pour y parvenir.
+
+La commande ressemble à ce qui suit
+
+-<command> [filename]
+[filename1] -<command> [filename2]
+Nous présenterons brièvement quelques commandes courantes que vous pourriez rencontrer dans votre vie quotidienne.
+
+Exemple
+utilisez "-e" pour tester si le fichier existe
+
+#!/bin/bash
+filename="sample.md"
+if [ -e "$filename" ]; then
+    echo "$filename exists as a file"
+fi
+utilisez "-d" pour tester si le répertoire existe
+
+#!/bin/bash
+directory_name="test_directory"
+if [ -d "$directory_name" ]; then
+    echo "$directory_name exists as a directory"
+fi
+utilisez "-r" pour tester si le fichier a l'autorisation de lecture pour l'utilisateur exécutant le script/test
+
+#!/bin/bash
+filename="sample.md"
+if [ ! -f "$filename" ]; then
+    touch "$filename"
+fi
+if [ -r "$filename" ]; then
+    echo "you are allowed to read $filename"
+else
+    echo "you are not allowed to read $filename"
+fi
+Exercer
+Il n'y a pas d'exercice pour cette section.
