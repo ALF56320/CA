@@ -41,4 +41,23 @@ Vous pouvez utiliser la substitution de processus de cette façon :
 
 echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
 Exercer
-Il n'y a pas d'exercice pour cette section.
+Bonjour ! Ce code utilise une commande appelée "tee" pour afficher une chaîne de caractères "Hello, world!" à la fois sur la sortie standard (l'écran) 
+et dans un fichier. De plus, la chaîne de caractères est transformée en lettres minuscules avant d'être écrite dans le fichier.
+
+"Echo" est une commande qui affiche une chaîne de caractères sur la sortie standard. Dans ce cas, la chaîne de caractères est "Hello, world!".
+
+"Tee" est une commande qui lit l'entrée standard (dans ce cas, la sortie de "echo") et l'écrit à la fois sur la sortie standard et dans un ou plusieurs fichiers.
+
+"Tr" est une commande qui transforme les caractères dans une chaîne en d'autres caractères.
+Dans ce cas, "tr '[:upper:]' '[:lower:]'" transforme toutes les lettres majuscules en lettres minuscules.
+
+">" est un symbole utilisé pour rediriger la sortie d'une commande vers un fichier.
+Dans ce cas, "/tmp/hello.txt" est le nom du fichier où la chaîne de caractères transformée en lettres minuscules sera écrite.
+
+Enfin, ">(...)" est une construction appelée "process substitution". Elle permet de créer un processus qui peut être utilisé comme un fichier. 
+Dans ce cas, la sortie de "tr" est redirigée vers le processus de substitution, qui écrit le résultat dans le fichier "/tmp/hello.txt".
+
+En résumé, ce code affiche la chaîne de caractères "Hello, world!" sur l'écran 
+et la transforme en lettres minuscules avant de l'écrire dans le fichier "/tmp/hello.txt". 
+Cela peut être utile pour capturer la sortie d'une commande dans un fichier tout en l'affichant à l'écran,
+ou pour transformer des données avant de les écrire dans un fichier.
