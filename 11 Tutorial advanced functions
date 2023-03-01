@@ -1,0 +1,52 @@
+Didacticiel
+Bien sûr, je peux vous aider à expliquer le code. 
+La première ligne #!/bin/bash est une directive au système pour qu'il exécute ce script comme un script Bash. 
+La commande echo, "Script Name : $0" imprime le nom du script. 
+La définition de fonction, "func", définit une fonction appelée func qui prend un nombre quelconque d'arguments et les stocke dans la variable $* 
+qui contiendra tous les arguments. 
+La boucle "for var in $*" passe en revue chaque argument stocké dans $* et assigne chaque argument à la variable var. 
+La commande "let i=i+1" est utilisée pour garder une trace du nombre d'arguments traités. La commande "echo The \$${i} argument
+
+Traduit avec www.DeepL.com/Translator (version gratuite)
+Dans le dernier tutoriel sur la fonction shell, vous utilisez "$1" pour représenter le premier argument passé à function_A. De plus, voici quelques variables spéciales en shell :
+
+$0- Le nom de fichier du script courant.|
+$n- Le Nième argument passé au script a été invoqué ou la fonction a été appelée.|
+$#- Le nombre d'arguments passés au script ou à la fonction.|
+$@- Tous les arguments passés au script ou à la fonction.|
+$*- Tous les arguments passés au script ou à la fonction.|
+$?- Le statut de sortie de la dernière commande exécutée.|
+$$- L'ID de processus du shell actuel. Pour les scripts shell, il s'agit de l'ID de processus sous lequel ils s'exécutent.|
+$!- Le numéro de processus de la dernière commande en arrière-plan.|
+Exemple:
+#!/bin/bash
+echo "Script Name: $0"
+function func {
+    for var in $*
+    do
+        let i=i+1
+        echo "The \$${i} argument is: ${var}"
+    done
+    echo "Total count of arguments: $#"
+}
+func We are argument
+$@et $*ont un comportement différent lorsqu'ils sont placés entre guillemets doubles.
+
+#!/bin/bash
+function func {
+    echo "--- \"\$*\""
+    for ARG in "$*"
+    do
+        echo $ARG
+    done
+
+    echo "--- \"\$@\""
+    for ARG in "$@"
+    do
+        echo $ARG
+    done
+}
+func We are argument
+Exercer
+Il n'y a pas d'exercice pour cette section.
+
