@@ -15,6 +15,20 @@ sort file1 > sorted_file1
 sort file2 > sorted_file2
 diff sorted_file1 sorted_file2
 Avec la substitution de processus, vous pouvez le faire en une seule ligne :
+D'accord ! Ce code est utilisé pour trier deux fichiers différents et comparer les résultats triés pour voir s'ils contiennent des différences.
+
+Tout d'abord, la commande "sort" est utilisée pour trier chaque fichier séparément.
+"sort" est une commande qui trie les lignes de texte dans un ordre spécifié (par exemple, par ordre alphabétique ou numérique). 
+Le résultat trié de chaque fichier est ensuite redirigé (c'est-à-dire envoyé) vers un nouveau fichier. 
+Le fichier "sorted_file1" contiendra le résultat trié de "file1", tandis que le fichier "sorted_file2" contiendra le résultat trié de "file2".
+
+Ensuite, la commande "diff" est utilisée pour comparer les deux fichiers triés et trouver des différences.
+"diff" est une commande qui compare deux fichiers et affiche les différences ligne par ligne.
+Dans ce cas, les fichiers triés sont comparés pour voir s'il y a des différences dans l'ordre des lignes ou si les lignes elles-mêmes sont différentes.
+
+En résumé, ce code trie deux fichiers différents et enregistre les résultats triés dans deux nouveaux fichiers.
+Ensuite, il utilise la commande "diff" pour comparer les fichiers triés et afficher les différences entre eux.
+Cela peut être utile pour comparer deux versions de fichiers texte ou pour diagnostiquer des erreurs dans des fichiers qui devraient être identiques.
 
 diff <(sort file1) <(sort file2)
 Input
