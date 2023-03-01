@@ -1,0 +1,55 @@
+Les pipelines, souvent appelés canaux, permettent de chaîner des commandes et de connecter la sortie d'une commande à l'entrée de la suivante.
+Un pipeline est représenté par le caractère pipe : |. C'est particulièrement pratique lorsqu'une entrée complexe ou longue est requise pour une commande.
+Les pipelines, ou canaux, sont comme des tuyaux qui peuvent relier différentes commandes ensemble pour les aider à travailler ensemble.
+C'est un peu comme mettre des legos ensemble pour construire quelque chose de plus grand !
+
+Le pipeline utilise un symbole spécial, qui ressemble à une barre verticale (|), pour connecter la sortie d'une commande à l'entrée de la suivante.
+Cela peut aider à rendre les choses plus simples et plus rapides, surtout si vous travaillez avec beaucoup de données.
+
+Par exemple, supposons que vous vouliez savoir combien de fichiers se trouvent dans un dossier particulier sur votre ordinateur. 
+Plutôt que de chercher manuellement chaque fichier, 
+vous pouvez utiliser une commande pour afficher tous les fichiers dans ce dossier,
+puis la connecter à une autre commande qui peut compter le nombre de fichiers automatiquement. Vous pouvez même ajouter une autre commande
+pour n'afficher que les premiers résultats ou ceux qui correspondent à un certain modèle.
+
+Cela peut sembler un peu compliqué, mais c'est en fait assez simple. Vous pouvez imaginer que les commandes sont comme des outils différents, 
+et le pipeline est le tuyau qui les relie pour les aider à travailler ensemble. Cela permet de gagner beaucoup de temps et d'efforts,
+et c'est pourquoi les pipelines sont si utiles !
+
+
+
+command1 | command2
+Par défaut, les pipelines redirigent uniquement la sortie standard. Si vous souhaitez inclure l'erreur standard,
+vous devez utiliser le formulaire qui est un raccourci pour .|&2>&1 |
+
+Exemple:
+Imaginez que vous vouliez connaître rapidement le nombre d'entrées dans un répertoire, vous pouvez utiliser un tube pour rediriger 
+la sortie de la lscommande vers la wccommande avec l'option -l.
+
+ls / | wc -l
+Ensuite, vous voulez voir uniquement les 10 premiers résultats
+
+ls / | head
+Remarque : head affiche les 10 premières lignes par défaut, utilisez l'option -n pour modifier ce comportement
+
+Grep recherche des modèles dans chaque fichier. Patterns est un ou plusieurs modèles séparés par des caractères de retour à la ligne,
+et grep imprime chaque ligne correspondant à un modèle. Généralement, les modèles doivent être entre guillemets lorsque grep est utilisé dans une commande shell.
+
+ls / | grep  # This will grab any line/file that has a matching pattern in it
+Exercer
+Dans cet exercice, vous devrez imprimer le nombre de processeurs en fonction des informations contenues dans le fichier cpuinfo (/proc/cpuinfo)
+
+Astuce 1 : chaque processeur a un numéro unique, par exemple le premier processeur contiendra la ligne processor: 0
+Astuce 2 : vous pouvez enchaîner plus de deux commandes à la suite
+
+-----------------------------------------------------------------------------------------------------------------------------------
+#!/bin/bash
+cat /proc/cpuinfo | 
+ls /cpuinfo | grep "processor: 0" 
+--------------------------------------------------------------------
+#!/bin/bash
+cat /proc/cpuinfo | grep processor | wc -l
+-----------------------
+
+
+
