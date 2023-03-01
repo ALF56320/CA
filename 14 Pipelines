@@ -15,7 +15,15 @@ pour n'afficher que les premiers résultats ou ceux qui correspondent à un cert
 Cela peut sembler un peu compliqué, mais c'est en fait assez simple. Vous pouvez imaginer que les commandes sont comme des outils différents, 
 et le pipeline est le tuyau qui les relie pour les aider à travailler ensemble. Cela permet de gagner beaucoup de temps et d'efforts,
 et c'est pourquoi les pipelines sont si utiles !
+Ce code utilise un langage de programmation appelé "bash" pour afficher le nombre de processeurs sur votre ordinateur.
 
+"Cat" est une commande qui affiche le contenu d'un fichier. Dans ce cas, le fichier est "cpuinfo", qui contient des informations sur le processeur de l'ordinateur.
+"Grep" est une commande qui recherche des motifs dans un texte. Dans ce cas, la commande "grep processor" recherche des lignes contenant le mot "processor" 
+dans le texte de cpuinfo.
+Enfin, "wc -l" compte le nombre de lignes dans la sortie de "grep processor".
+Donc, dans l'ensemble, ce code affiche simplement le nombre de processeurs que votre ordinateur possède en recherchant
+le mot "processor" dans le fichier "cpuinfo" et en comptant le nombre de lignes qui contiennent ce mot. 
+Cela peut aider à comprendre les capacités de traitement de votre ordinateur ou à diagnostiquer des problèmes de performance.
 
 
 command1 | command2
