@@ -1,0 +1,30 @@
+Dans la section précédente, nous avons vu comment chaîner la sortie d'une commande à la suivante. 
+Mais que se passe-t-il si vous voulez enchaîner la sortie de deux commandes ou plus à l'autre ?
+Que se passe-t-il si vous avez une commande qui prend un fichier comme argument mais que vous souhaitez traiter tout ce qui est envoyé à ce fichier ?
+
+La substitution de processus permet de faire référence à l'entrée ou à la sortie d'un processus à l'aide d'un nom de fichier.
+Il a deux formes : output et input .<(cmd)>(cmd)
+
+Exemple:
+Output
+Imaginez que vous avez deux fichiers dont vous souhaitez comparer le contenu. L'utilisation diff file1 file2pourrait générer des faux positifs 
+dans le cas où les lignes ne sont pas ordonnées. Donc, si vous voulez comparer ces fichiers, vous pouvez créer deux nouveaux fichiers, les commander et les comparer.
+Cela ressemblerait à :
+
+sort file1 > sorted_file1
+sort file2 > sorted_file2
+diff sorted_file1 sorted_file2
+Avec la substitution de processus, vous pouvez le faire en une seule ligne :
+
+diff <(sort file1) <(sort file2)
+Input
+Imaginez que vous souhaitiez stocker les journaux d'une application dans un fichier et en même temps l'imprimer sur la console.
+Une commande très pratique pour cela est tee.
+
+echo "Hello, world!" | tee /tmp/hello.txt
+Supposons maintenant que vous souhaitiez n'avoir que des caractères minuscules dans le fichier tout en conservant la casse normale sur la sortie.
+Vous pouvez utiliser la substitution de processus de cette façon :
+
+echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
+Exercer
+Il n'y a pas d'exercice pour cette section.
